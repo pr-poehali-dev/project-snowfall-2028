@@ -25,21 +25,21 @@ export function WorkSection() {
             {
               number: "01",
               title: "Бюджет и сбережения",
-              category: "Базовый уровень · 12+ лет",
+              category: "Базовый уровень · 12+ лет · бесплатно",
               year: "free",
               direction: "left",
             },
             {
               number: "02",
               title: "Акции и биржа",
-              category: "Средний уровень · 14+ лет",
+              category: "Средний уровень · 14+ лет · квест «Стань CEO TikTok»",
               year: "pro",
               direction: "right",
             },
             {
               number: "03",
               title: "Крипта и риски",
-              category: "Продвинутый уровень · 16+ лет",
+              category: "Продвинутый уровень · 16+ лет · симулятор «Биткойн‑ферма»",
               year: "pro",
               direction: "left",
             },
@@ -88,7 +88,7 @@ function ProjectCard({
           <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
         </div>
       </div>
-      <span className="font-mono text-xs text-foreground/30 md:text-sm">{project.year}</span>
+      <span className="font-mono text-xs text-foreground/30 uppercase md:text-sm">{project.year}</span>
     </div>
   )
 }

@@ -11,7 +11,6 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
-          {/* Left side - Story */}
           <div>
             <div
               className={`mb-6 transition-all duration-700 md:mb-12 ${
@@ -19,11 +18,11 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               }`}
             >
               <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
-                Создаем
+                Не просто
                 <br />
-                будущее
+                обучение
                 <br />
-                <span className="text-foreground/40">цифровых</span>
+                <span className="text-foreground/40">это вовлечение</span>
               </h2>
             </div>
 
@@ -34,20 +33,19 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               style={{ transitionDelay: "200ms" }}
             >
               <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                Мы команда дизайнеров, разработчиков и технологов, которые создают исключительные цифровые продукты.
+                89% подростков бросают обучение из‑за скучных форматов — но 73% хотят инвестировать. InvestFuture закрывает этот разрыв.
               </p>
               <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                Каждый проект — это возможность исследовать новые решения и раздвигать границы возможного.
+                Мы создаём мир, где финансовая грамотность становится навыком, который приносит радость и уверенность.
               </p>
             </div>
           </div>
 
-          {/* Right side - Stats with creative layout */}
           <div className="flex flex-col justify-center space-y-6 md:space-y-12">
             {[
-              { value: "150+", label: "Проектов", sublabel: "Реализовано по всему миру", direction: "right" },
-              { value: "8", label: "Лет", sublabel: "Опыта и инноваций", direction: "left" },
-              { value: "12", label: "Наград", sublabel: "Отраслевое признание", direction: "right" },
+              { value: "10K+", label: "Пользователей", sublabel: "Цель на первый год", direction: "right" },
+              { value: "70%", label: "Освоят финансы", sublabel: "Базовые концепции инвестирования", direction: "left" },
+              { value: "5 млн", label: "Рублей выручки", sublabel: "Прогноз: подписки и партнёрства", direction: "right" },
             ].map((stat, i) => {
               const getRevealClass = () => {
                 if (!isVisible) {
@@ -84,10 +82,10 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           style={{ transitionDelay: "750ms" }}
         >
           <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Начать проект
+            Зарегистрироваться
           </MagneticButton>
           <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(1)}>
-            Смотреть работы
+            Смотреть модули
           </MagneticButton>
         </div>
       </div>

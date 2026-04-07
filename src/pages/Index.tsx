@@ -182,8 +182,8 @@ export default function Index() {
       >
         <Shader className="h-full w-full">
           <Swirl
-            colorA="#1275d8"
-            colorB="#e19136"
+            colorA="#7c3aed"
+            colorB="#22c55e"
             speed={0.8}
             detail={0.8}
             blend={50}
@@ -195,11 +195,11 @@ export default function Index() {
             fineY={40}
           />
           <ChromaFlow
-            baseColor="#0066ff"
-            upColor="#0066ff"
-            downColor="#d1d1d1"
-            leftColor="#e19136"
-            rightColor="#e19136"
+            baseColor="#7c3aed"
+            upColor="#a855f7"
+            downColor="#1e1b4b"
+            leftColor="#22c55e"
+            rightColor="#16a34a"
             intensity={0.9}
             radius={1.8}
             momentum={25}
@@ -261,16 +261,16 @@ export default function Index() {
         <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
           <div className="max-w-3xl">
             <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <p className="font-mono text-xs text-foreground/90">🎮 Финансовая грамотность через игру</p>
+              <p className="font-mono text-xs text-foreground/90">🎮 Поколение Z — добро пожаловать в финансы</p>
             </div>
             <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
               <span className="text-balance">
-                Инвестируй в себя с первого класса
+                Инвестиции как игра — для тех, кто родился в цифре
               </span>
             </h1>
             <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
               <span className="text-pretty">
-                Квесты, рейтинги и челленджи вместо скучных лекций. Подростки 12–18 лет учатся управлять деньгами и инвестировать — на виртуальной валюте, в реальных ситуациях.
+                Квесты «Финансовый герой», мемы, рейтинги и призы вместо скучных лекций. Учишься инвестировать — на виртуальной валюте, в реальных ситуациях.
               </span>
             </p>
             <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
@@ -279,7 +279,7 @@ export default function Index() {
                 variant="primary"
                 onClick={() => scrollToSection(4)}
               >
-                Начать бесплатно
+                Начать игру
               </MagneticButton>
               <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
                 Как это работает
