@@ -1,6 +1,9 @@
 import { useReveal } from "@/hooks/use-reveal"
+import type { translations } from "@/lib/i18n"
 
-export function ServicesSection() {
+type Props = { t: typeof translations["ru"]["services"] }
+
+export function ServicesSection({ t }: Props) {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -15,34 +18,13 @@ export function ServicesSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Возможности
+            {t.title}
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Почему это работает</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">{t.subtitle}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
-          {[
-            {
-              title: "Анимированный помощник",
-              description: "Персонаж в стиле Among Us объясняет сложные термины простым языком — с примерами из поп‑культуры: акции = подписка на сериал, крипта = редкий скин в Fortnite",
-              direction: "top",
-            },
-            {
-              title: "Виртуальный портфель",
-              description: "Торгуй без риска для реальных денег: портфель «цветёт» при успехе и даёт подсказки, если что‑то идёт не так",
-              direction: "right",
-            },
-            {
-              title: "Stories‑уроки",
-              description: "Ежедневные 5‑минутные видео с жизненными примерами — закрепляй знания без перегрузки",
-              direction: "left",
-            },
-            {
-              title: "Родительский контроль",
-              description: "Родители отслеживают прогресс через отдельный аккаунт. Все сделки — только с их согласия. Валюта — виртуальная",
-              direction: "bottom",
-            },
-          ].map((service, i) => (
+          {t.items.map((service, i) => (
             <ServiceCard key={i} service={service} index={i} isVisible={isVisible} />
           ))}
         </div>
@@ -63,16 +45,11 @@ function ServiceCard({
   const getRevealClass = () => {
     if (!isVisible) {
       switch (service.direction) {
-        case "left":
-          return "-translate-x-16 opacity-0"
-        case "right":
-          return "translate-x-16 opacity-0"
-        case "top":
-          return "-translate-y-16 opacity-0"
-        case "bottom":
-          return "translate-y-16 opacity-0"
-        default:
-          return "translate-y-12 opacity-0"
+        case "left": return "-translate-x-16 opacity-0"
+        case "right": return "translate-x-16 opacity-0"
+        case "top": return "-translate-y-16 opacity-0"
+        case "bottom": return "translate-y-16 opacity-0"
+        default: return "translate-y-12 opacity-0"
       }
     }
     return "translate-x-0 translate-y-0 opacity-100"
@@ -81,9 +58,7 @@ function ServiceCard({
   return (
     <div
       className={`group transition-all duration-700 ${getRevealClass()}`}
-      style={{
-        transitionDelay: `${index * 150}ms`,
-      }}
+      style={{ transitionDelay: `${index * 150}ms` }}
     >
       <div className="mb-3 flex items-center gap-3">
         <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />

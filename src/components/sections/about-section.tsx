@@ -1,7 +1,13 @@
 import { MagneticButton } from "@/components/magnetic-button"
 import { useReveal } from "@/hooks/use-reveal"
+import type { translations } from "@/lib/i18n"
 
-export function AboutSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
+type Props = {
+  scrollToSection?: (index: number) => void
+  t: typeof translations["ru"]["about"]
+}
+
+export function AboutSection({ scrollToSection, t }: Props) {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -18,11 +24,11 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               }`}
             >
               <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
-                Не просто
+                {t.titleLine1}
                 <br />
-                обучение —
+                {t.titleLine2}
                 <br />
-                <span className="text-foreground/40">экосистема</span>
+                <span className="text-foreground/40">{t.titleLine3}</span>
               </h2>
             </div>
 
@@ -32,21 +38,13 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                89% подростков бросают обучение из‑за скучных форматов — но 73% хотят инвестировать. InvestFuture закрывает этот разрыв.
-              </p>
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                Мы не читаем лекции — мы вовлекаем, мотивируем и формируем новое поколение финансово грамотных людей. Подростки учатся на ошибках без риска для реальных денег.
-              </p>
+              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">{t.p1}</p>
+              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">{t.p2}</p>
             </div>
           </div>
 
           <div className="flex flex-col justify-center space-y-6 md:space-y-12">
-            {[
-              { value: "10 000", label: "Активных пользователей", sublabel: "Цель на первый год работы", direction: "right" },
-              { value: "70%", label: "Освоят базовые концепции", sublabel: "Финансовой грамотности и инвестирования", direction: "left" },
-              { value: "18 мес", label: "Окупаемость", sublabel: "Выручка 5 млн руб. в год от подписок и рекламы", direction: "right" },
-            ].map((stat, i) => {
+            {t.stats.map((stat, i) => {
               const getRevealClass = () => {
                 if (!isVisible) {
                   return stat.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
@@ -81,11 +79,11 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           }`}
           style={{ transitionDelay: "750ms" }}
         >
-          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Зарегистрироваться
+          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(5)}>
+            {t.ctaPrimary}
           </MagneticButton>
           <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(1)}>
-            Смотреть модули
+            {t.ctaSecondary}
           </MagneticButton>
         </div>
       </div>

@@ -1,26 +1,14 @@
 import { MagneticButton } from "@/components/magnetic-button"
 import { useReveal } from "@/hooks/use-reveal"
 import Icon from "@/components/ui/icon"
+import type { translations } from "@/lib/i18n"
 
-const FREE_FEATURES = [
-  "Квест «Финансовый герой»",
-  "Квест «Почему деньги любят время?»",
-  "Виртуальный портфель",
-  "Анимированный помощник",
-  "Ежедневные Stories‑уроки",
-  "Родительский контроль",
-]
+type Props = {
+  scrollToSection?: (index: number) => void
+  t: typeof translations["ru"]["pricing"]
+}
 
-const PRO_FEATURES = [
-  "Всё из бесплатного плана",
-  "Симулятор «Криптовалютный хакатон»",
-  "Квест «Волшебное дерево» — продвинутый",
-  "Участие в рейтинге топ‑10",
-  "Призы: Spotify, Discord Nitro, AirPods",
-  "Партнёрские предложения от брокеров",
-]
-
-export function PricingSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
+export function PricingSection({ scrollToSection, t }: Props) {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -35,29 +23,29 @@ export function PricingSection({ scrollToSection }: { scrollToSection?: (index: 
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Тарифы
+            {t.title}
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Начни бесплатно, расти с Premium</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">{t.subtitle}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 md:gap-12 lg:gap-20">
           {/* Free */}
           <div
             className={`flex flex-col border border-foreground/10 p-6 transition-all duration-700 md:p-10 ${
-              isVisible ? "-translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
+              isVisible ? "opacity-100 translate-x-0" : "-translate-x-16 opacity-0"
             }`}
             style={{ transitionDelay: "150ms" }}
           >
             <div className="mb-6">
-              <p className="mb-1 font-mono text-xs text-foreground/50 uppercase tracking-widest">Бесплатно</p>
+              <p className="mb-1 font-mono text-xs uppercase tracking-widest text-foreground/50">{t.freeLabel}</p>
               <div className="flex items-baseline gap-2">
                 <span className="font-sans text-5xl font-light text-foreground md:text-6xl">0 ₽</span>
-                <span className="font-mono text-sm text-foreground/50">/ навсегда</span>
+                <span className="font-mono text-sm text-foreground/50">{t.freePeriod}</span>
               </div>
             </div>
 
             <ul className="mb-8 flex-1 space-y-3">
-              {FREE_FEATURES.map((f) => (
+              {t.freeFeatures.map((f) => (
                 <li key={f} className="flex items-center gap-3">
                   <Icon name="Check" size={14} className="shrink-0 text-foreground/50" />
                   <span className="text-sm text-foreground/80 md:text-base">{f}</span>
@@ -66,7 +54,7 @@ export function PricingSection({ scrollToSection }: { scrollToSection?: (index: 
             </ul>
 
             <MagneticButton variant="secondary" size="lg" onClick={() => scrollToSection?.(5)}>
-              Начать бесплатно
+              {t.ctaFree}
             </MagneticButton>
           </div>
 
@@ -78,20 +66,20 @@ export function PricingSection({ scrollToSection }: { scrollToSection?: (index: 
             style={{ transitionDelay: "300ms" }}
           >
             <div className="absolute -top-3 left-6 bg-background px-3">
-              <span className="font-mono text-xs text-primary uppercase tracking-widest">Популярный</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-primary">{t.popular}</span>
             </div>
 
             <div className="mb-6">
-              <p className="mb-1 font-mono text-xs text-foreground/50 uppercase tracking-widest">Premium</p>
+              <p className="mb-1 font-mono text-xs uppercase tracking-widest text-foreground/50">{t.proLabel}</p>
               <div className="flex items-baseline gap-2">
                 <span className="font-sans text-5xl font-light text-foreground md:text-6xl">399 ₽</span>
-                <span className="font-mono text-sm text-foreground/50">/ месяц</span>
+                <span className="font-mono text-sm text-foreground/50">{t.proPeriod}</span>
               </div>
-              <p className="mt-1 font-mono text-xs text-foreground/40">Окупаемость платформы — 18 месяцев при 10 000 пользователей</p>
+              <p className="mt-1 font-mono text-xs text-foreground/40">{t.proNote}</p>
             </div>
 
             <ul className="mb-8 flex-1 space-y-3">
-              {PRO_FEATURES.map((f) => (
+              {t.proFeatures.map((f) => (
                 <li key={f} className="flex items-center gap-3">
                   <Icon name="Check" size={14} className="shrink-0 text-primary" />
                   <span className="text-sm text-foreground/90 md:text-base">{f}</span>
@@ -100,7 +88,7 @@ export function PricingSection({ scrollToSection }: { scrollToSection?: (index: 
             </ul>
 
             <MagneticButton variant="primary" size="lg" onClick={() => scrollToSection?.(5)}>
-              Попробовать Premium
+              {t.ctaPro}
             </MagneticButton>
           </div>
         </div>

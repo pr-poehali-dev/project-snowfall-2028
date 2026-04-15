@@ -8,8 +8,10 @@ import { PricingSection } from "@/components/sections/pricing-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import { useLang } from "@/lib/i18n"
 
 export default function Index() {
+  const { lang, setLang, t } = useLang()
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [currentSection, setCurrentSection] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -227,7 +229,7 @@ export default function Index() {
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Главная", "Квесты", "Возможности", "О платформе", "Тарифы", "Попробовать"].map((item, index) => (
+          {t.nav.map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
@@ -245,9 +247,19 @@ export default function Index() {
           ))}
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
-          Начать бесплатно
-        </MagneticButton>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setLang(lang === "ru" ? "en" : "ru")}
+            className="flex items-center gap-1 rounded-full border border-foreground/20 bg-foreground/10 px-3 py-1.5 font-mono text-xs text-foreground/80 backdrop-blur-md transition-all hover:bg-foreground/20 hover:text-foreground"
+          >
+            <span className={lang === "ru" ? "text-foreground" : "text-foreground/40"}>RU</span>
+            <span className="text-foreground/30">/</span>
+            <span className={lang === "en" ? "text-foreground" : "text-foreground/40"}>EN</span>
+          </button>
+          <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
+            {t.navCta}
+          </MagneticButton>
+        </div>
       </nav>
 
       <div
@@ -262,28 +274,20 @@ export default function Index() {
         <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
           <div className="max-w-3xl">
             <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <p className="font-mono text-xs text-foreground/90">🎮 Поколение Z — добро пожаловать в финансы</p>
+              <p className="font-mono text-xs text-foreground/90">{t.hero.badge}</p>
             </div>
             <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
-              <span className="text-balance">
-                Инвестиции как игра — для тех, кто родился в цифре
-              </span>
+              <span className="text-balance">{t.hero.title}</span>
             </h1>
             <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
-              <span className="text-pretty">
-                Квесты «Финансовый герой», мемы, рейтинги и призы вместо скучных лекций. Учишься инвестировать — на виртуальной валюте, в реальных ситуациях.
-              </span>
+              <span className="text-pretty">{t.hero.subtitle}</span>
             </p>
             <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
-              <MagneticButton
-                size="lg"
-                variant="primary"
-                onClick={() => scrollToSection(4)}
-              >
-                Начать игру
+              <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection(5)}>
+                {t.hero.cta}
               </MagneticButton>
               <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
-                Как это работает
+                {t.hero.ctaSecondary}
               </MagneticButton>
             </div>
           </div>
@@ -298,11 +302,11 @@ export default function Index() {
           </div>
         </section>
 
-        <WorkSection />
-        <ServicesSection />
-        <AboutSection scrollToSection={scrollToSection} />
-        <PricingSection scrollToSection={scrollToSection} />
-        <ContactSection />
+        <WorkSection t={t.work} />
+        <ServicesSection t={t.services} />
+        <AboutSection scrollToSection={scrollToSection} t={t.about} />
+        <PricingSection scrollToSection={scrollToSection} t={t.pricing} />
+        <ContactSection t={t.contact} />
       </div>
 
       <style>{`

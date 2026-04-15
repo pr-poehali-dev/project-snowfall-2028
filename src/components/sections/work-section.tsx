@@ -1,6 +1,9 @@
 import { useReveal } from "@/hooks/use-reveal"
+import type { translations } from "@/lib/i18n"
 
-export function WorkSection() {
+type Props = { t: typeof translations["ru"]["work"] }
+
+export function WorkSection({ t }: Props) {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -10,47 +13,18 @@ export function WorkSection() {
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-10 transition-all duration-700 md:mb-14 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Квесты
+            {t.title}
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Учись через игру</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">{t.subtitle}</p>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
-          {[
-            {
-              number: "01",
-              title: "Финансовый герой",
-              category: "Диверсификация · выбирай стратегию · получай награды за успехи",
-              year: "free",
-              direction: "left",
-            },
-            {
-              number: "02",
-              title: "Почему деньги любят время?",
-              category: "Сложный процент · 100 руб. сегодня = 5 000 руб. через 5 лет",
-              year: "free",
-              direction: "right",
-            },
-            {
-              number: "03",
-              title: "Волшебное дерево",
-              category: "Регулярные вклады · бонусы за каждый взнос · симулятор роста",
-              year: "free",
-              direction: "left",
-            },
-            {
-              number: "04",
-              title: "Криптовалютный хакатон",
-              category: "Продвинутый симулятор · 16+ лет · только Premium",
-              year: "pro",
-              direction: "right",
-            },
-          ].map((project, i) => (
+        <div className="space-y-4 md:space-y-6">
+          {t.items.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} isVisible={isVisible} />
           ))}
         </div>
@@ -77,9 +51,9 @@ function ProjectCard({
 
   return (
     <div
-      className={`group flex items-center justify-between border-b border-foreground/10 py-6 transition-all duration-700 hover:border-foreground/20 md:py-8 ${getRevealClass()}`}
+      className={`group flex items-center justify-between border-b border-foreground/10 py-5 transition-all duration-700 hover:border-foreground/20 md:py-6 ${getRevealClass()}`}
       style={{
-        transitionDelay: `${index * 150}ms`,
+        transitionDelay: `${index * 120}ms`,
         marginLeft: index % 2 === 0 ? "0" : "auto",
         maxWidth: index % 2 === 0 ? "85%" : "90%",
       }}
@@ -89,7 +63,7 @@ function ProjectCard({
           {project.number}
         </span>
         <div>
-          <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
+          <h3 className="mb-1 font-sans text-xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-2xl lg:text-3xl">
             {project.title}
           </h3>
           <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
