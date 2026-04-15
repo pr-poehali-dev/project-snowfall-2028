@@ -15,33 +15,40 @@ export function WorkSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Модули
+            Квесты
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Учебные треки</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Учись через игру</p>
         </div>
 
         <div className="space-y-6 md:space-y-8">
           {[
             {
               number: "01",
-              title: "Бюджет и сбережения",
-              category: "Базовый уровень · 12+ лет · бесплатно",
+              title: "Финансовый герой",
+              category: "Диверсификация · выбирай стратегию · получай награды за успехи",
               year: "free",
               direction: "left",
             },
             {
               number: "02",
-              title: "Акции и биржа",
-              category: "Средний уровень · 14+ лет · квест «Стань CEO TikTok»",
-              year: "pro",
+              title: "Почему деньги любят время?",
+              category: "Сложный процент · 100 руб. сегодня = 5 000 руб. через 5 лет",
+              year: "free",
               direction: "right",
             },
             {
               number: "03",
-              title: "Крипта и риски",
-              category: "Продвинутый уровень · 16+ лет · симулятор «Биткойн‑ферма»",
-              year: "pro",
+              title: "Волшебное дерево",
+              category: "Регулярные вклады · бонусы за каждый взнос · симулятор роста",
+              year: "free",
               direction: "left",
+            },
+            {
+              number: "04",
+              title: "Криптовалютный хакатон",
+              category: "Продвинутый симулятор · 16+ лет · только Premium",
+              year: "pro",
+              direction: "right",
             },
           ].map((project, i) => (
             <ProjectCard key={i} project={project} index={i} isVisible={isVisible} />
